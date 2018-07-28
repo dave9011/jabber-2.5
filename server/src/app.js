@@ -15,9 +15,9 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/status', (request, response) => {
+app.post('/register', (request, response) => {
     response.send({
-        message: 'Hello World!',
+        message: 'You user was registered!',
     });
 });
 
