@@ -5,6 +5,9 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const config = require('./config/config');
 
+// Set debug mode for now
+mongoose.set('debug', true);
+
 console.log('Initializing server');
 
 // Create express application
@@ -33,6 +36,9 @@ mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.data
   },
   (error) => {
     console.log(`Connected to DB: ${config.db.database}`);
+
+    // Initialize models
+    require('./models/index');
 
     app.emit('ready');
   }
