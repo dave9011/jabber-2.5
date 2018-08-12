@@ -21,19 +21,19 @@ require('./routes')(app);
 
 // Set callback for when app is ready
 app.on('ready', () => {
-    app.listen(config.port);
+  app.listen(config.port);
 
-    console.log('Listening on port ' + config.port);
+  console.log('Listening on port ' + config.port);
 });
 
 // Attempt DB connection
-mongoose.connect('mongodb://localhost:27017/myapp',
+mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.database}`,
   {
     useNewUrlParser: true,
   },
-  () => {
-      console.log('Connected to DB');
+  (error) => {
+    console.log(`Connected to DB: ${config.db.database}`);
 
-      app.emit('ready');
+    app.emit('ready');
   }
 );
