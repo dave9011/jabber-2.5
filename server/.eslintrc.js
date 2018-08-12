@@ -9,5 +9,9 @@ module.exports = {
             "properties": false
         }],
         "space-before-function-paren": ["error", "always"],
+        "max-len": ["error", {
+            "ignoreComments": true,
+            code: 120
+        }]
     }
 };
