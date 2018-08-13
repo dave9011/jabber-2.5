@@ -47,7 +47,11 @@ export default {
 
         console.log(response.data)
       } catch (err) {
-        console.log(err);
+        console.log(err.response);
+
+        if (err.response) {
+            alert(err.response.data.error);
+        }
 
         return;
       }
