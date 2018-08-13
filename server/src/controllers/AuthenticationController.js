@@ -32,6 +32,7 @@ module.exports = {
     try {
       error, user = await User.create({
         email: body.email,
+        // TODO: hash password
         password: body.password,
       });
     } catch (err) {

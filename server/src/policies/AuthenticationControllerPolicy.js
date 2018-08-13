@@ -23,7 +23,7 @@ module.exports = {
           errMsg = 'The password provided was invalid, please send an alphanumeric value between 8 and 32 characters.';
           break;
         default:
-          errMsg = 'The password provided was invalid, please send an alphanumeric value between 8 and 32 characters.';
+          errMsg = 'Invalid register information provided';
       }
 
       response.status(400).send({
