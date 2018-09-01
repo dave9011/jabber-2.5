@@ -1,27 +1,28 @@
-<style scoped src="./register.css"></style>
-
 <template>
-    <div class="log-in-hold-outer">
-        <div class="log-in-hold-inner">
-            <div class="log-in-form">
-                <div class="form-row">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        placeholder="e.g. example@email.com"
-                        v-model="email"/>
-                </div>
-                <div class="form-row">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        placeholder="password"
-                        v-model="password"/>
-                </div>
-                <div class="form-row">
-                    <button class="submit-btn" v-on:click="register">Register</button>
-                </div>
-            </div>
+    <div>
+        <div>
+            <v-form ref="registrationForm" class="log-in-form elevation-4 pa-4">
+                <v-text-field
+                    label="Email"
+                    v-model="email"
+                    placeholder="Enter email here"
+                    hint="e.g. example@email.com"
+                    :rules="emailRules"
+                    type="email"
+                ></v-text-field>
+                <v-text-field
+                    label="Password"
+                    v-model="password"
+                    :rules="passwordRules"
+                    placeholder="Enter password here"
+                    type="password"
+                ></v-text-field>
+                <v-btn
+                    class="submit-btn"
+                    @click="register">
+                    Register
+                </v-btn>
+            </v-form>
         </div>
     </div>
 </template>
@@ -33,12 +34,23 @@ export default {
   name: 'log-in',
   data () {
     return {
-      email: 'hrdavidl@gmail.com',
-      password: 'test'
+      email: null,
+      password: null,
+      emailRules: [
+        (v) => !!v || 'Email is required'
+      ],
+      passwordRules: [
+        (v) => !!v || 'Password is required',
+        (v) => (v && v.length >= 8 && v.length <= 32) || 'Password must be 8-32 characters a-z, A-Z, 0-9'
+      ]
     }
   },
   methods: {
     async register () {
+      if (!this.$refs.registrationForm.validate()) {
+        return
+      }
+
       try {
         const response = await AuthenticationService.register({
           email: this.email,
