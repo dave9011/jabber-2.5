@@ -5,7 +5,6 @@
                 <v-text-field
                     label="Email"
                     v-model="email"
-                    placeholder="Enter email here"
                     hint="e.g. example@email.com"
                     :rules="emailRules"
                     type="email"
@@ -14,7 +13,6 @@
                     label="Password"
                     v-model="password"
                     :rules="passwordRules"
-                    placeholder="Enter password here"
                     type="password"
                 ></v-text-field>
                 <v-btn
