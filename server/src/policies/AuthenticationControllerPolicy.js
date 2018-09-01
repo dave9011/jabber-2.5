@@ -12,25 +12,26 @@ module.exports = {
 
     const {error} = Joi.validate(request.body, schema);
 
-    if (error) {
-      let errMsg = null;
-
-      switch (error.details[0].context.key) {
-        case 'email':
-          errMsg = 'You must provide a valid email address.';
-          break;
-        case 'password':
-          errMsg = 'The password provided was invalid, please send an alphanumeric value between 8 and 32 characters.';
-          break;
-        default:
-          errMsg = 'Invalid register information provided';
-      }
-
-      response.status(400).send({
-        error: errMsg,
-      });
-    } else {
+    if (! error) {
       next();
+      return;
     }
+
+    let errMsg = null;
+
+    switch (error.details[0].context.key) {
+      case 'email':
+        errMsg = 'You must provide a valid email address.';
+        break;
+      case 'password':
+        errMsg = 'The password provided was invalid, please send an alphanumeric value between 8 and 32 characters.';
+        break;
+      default:
+        errMsg = 'Invalid register information provided';
+    }
+
+    response.status(400).send({
+      error: errMsg,
+    });
   },
 };
