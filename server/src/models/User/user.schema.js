@@ -3,8 +3,12 @@ module.exports = {
     type: String,
     unique: true,
     index: true,
+    required: true,
   },
-  password: String,
+  password: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
   },

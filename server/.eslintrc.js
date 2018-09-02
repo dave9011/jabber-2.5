@@ -1,7 +1,7 @@
 module.exports = {
     "extends": "google",
     "parserOptions": {
-        "ecmaVersion": 6
+        "ecmaVersion": 2017
     },
     rules: {
         "linebreak-style": ["error", "windows"],
@@ -9,5 +9,9 @@ module.exports = {
             "properties": false
         }],
         "space-before-function-paren": ["error", "always"],
+        "max-len": ["error", {
+            "ignoreComments": true,
+            code: 120
+        }]
     }
 };

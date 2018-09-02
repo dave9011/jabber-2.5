@@ -5,4 +5,7 @@ module.exports = {
     port: process.env.DB_PORT || 27017,
     database: process.env.DB_NAME || 'myapp',
   },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret',
+  },
 };
