@@ -1,10 +1,10 @@
-import ApiService from './api-service'
+import apiService from './api-service';
 
 export default {
   register (credentials) {
-    return ApiService().post('register', credentials)
+    return apiService().post('register', credentials);
   },
   login (credentials) {
-    return ApiService().post('login', credentials)
-  }
-}
+    return apiService().post('login', credentials);
+  },
+};

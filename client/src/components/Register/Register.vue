@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import AuthenticationService from './../../services/authentication'
+import AuthenticationService from './../../services/authentication';
 
 export default {
   name: 'log-in',
@@ -35,36 +35,36 @@ export default {
       email: null,
       password: null,
       emailRules: [
-        (v) => !!v || 'Email is required'
+        (v) => !!v || 'Email is required',
       ],
       passwordRules: [
         (v) => !!v || 'Password is required',
-        (v) => (v && v.length >= 8 && v.length <= 32) || 'Password must be 8-32 characters a-z, A-Z, 0-9'
-      ]
-    }
+        (v) => (v && v.length >= 8 && v.length <= 32) || 'Password must be 8-32 characters a-z, A-Z, 0-9',
+      ],
+    };
   },
   methods: {
     async register () {
       if (!this.$refs.registrationForm.validate()) {
-        return
+        return;
       }
 
       try {
         const response = await AuthenticationService.register({
           email: this.email,
-          password: this.password
-        })
+          password: this.password,
+        });
 
-        console.log(response.data)
+        console.log(response.data);
       } catch (err) {
-        console.log(err.response)
+        console.log(err.response);
 
         // TODO: add error message to UI instead of using this alert
         if (err.response) {
-          alert(err.response.data.error)
+          alert(err.response.data.error);
         }
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
