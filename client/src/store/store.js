@@ -28,4 +28,12 @@ export default new Vuex.Store({
       commit(SET_USER, user);
     },
   },
+  getters: {
+    user: (state) => {
+      return state.user;
+    },
+    isUserLoggedIn: (state) => {
+      return !! state.isUserLoggedIn;
+    },
+  },
 });
