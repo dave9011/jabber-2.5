@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <page-header/>
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -10,8 +11,13 @@
 </template>
 
 <script>
+import PageHeader from './components/PageHeader.vue';
+
 export default {
   name: 'App',
+  components: {
+    PageHeader,
+  },
 };
 </script>
 
