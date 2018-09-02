@@ -27,6 +27,7 @@
 
 <script>
 import AuthenticationService from './../../services/authentication'
+import {SET_TOKEN, SET_USER} from '@/store//mutation-types'
 
 export default {
   name: 'log-in',
@@ -56,6 +57,9 @@ export default {
         })
 
         console.log(response.data)
+
+        this.$store.dispatch(SET_TOKEN, response.data.token)
+        this.$store.dispatch(SET_USER, response.data.user)
       } catch (err) {
         console.log(err.response)
 
