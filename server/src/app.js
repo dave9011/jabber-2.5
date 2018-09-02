@@ -20,8 +20,6 @@ app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(cors());
 
-require('./routes')(app);
-
 // Set callback for when app is ready
 app.on('ready', () => {
   app.listen(config.port);
@@ -38,7 +36,9 @@ mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.data
     console.log(`Connected to DB: ${config.db.database}`);
 
     // Initialize models
-    require('./models/index');
+    const models = require('./models/index');
+
+    require('./routes')(app, models);
 
     app.emit('ready');
   }

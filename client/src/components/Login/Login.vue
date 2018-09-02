@@ -17,8 +17,8 @@
                 ></v-text-field>
                 <v-btn
                     class="submit-btn"
-                    @click="register">
-                    Register
+                    @click="login">
+                    Login
                 </v-btn>
             </v-form>
         </div>
@@ -27,6 +27,7 @@
 
 <script>
 import AuthenticationService from './../../services/authentication';
+import {SET_TOKEN, SET_USER} from '@/store//mutation-types';
 
 export default {
   name: 'log-in',
@@ -44,18 +45,21 @@ export default {
     };
   },
   methods: {
-    async register () {
+    async login () {
       if (!this.$refs.registrationForm.validate()) {
         return;
       }
 
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password,
         });
 
         console.log(response.data);
+
+        this.$store.dispatch(SET_TOKEN, response.data.token);
+        this.$store.dispatch(SET_USER, response.data.user);
       } catch (err) {
         console.log(err.response);
 
