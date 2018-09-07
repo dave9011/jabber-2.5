@@ -1,6 +1,6 @@
 # Jabber (2.5)
 
-Properly setting up this app as a full stack application with all the bells and whistles. Currently the plan is to re-create my initial 
+Properly setting up this app as a SPA with all the bells and whistles. Currently the plan is to re-create my initial 
 app using the following:
 
 1. Vue.js
